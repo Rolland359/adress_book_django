@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.http import HttpResponse
 from .models import Contact
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 def index(request):
     contacts = get_list_or_404(Contact)
@@ -22,5 +22,8 @@ def update(request, contact_id):
     context = {"contact":contact}
     return render(request, "book/update.html", context)
 
-def process_add(request, contact_id):
+def process_add(request):
+    print("utiliseateur sauvegardé")
+
+def process_delete(request, contact_id):
     pass

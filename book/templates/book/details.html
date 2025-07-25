@@ -1,2 +1,39 @@
 {% extends "book/base.html" %}
 {% load static %}
+
+{% block content %}
+    {% if contact %}
+    <h3>PLUS DE DETAILS SUR UN(E) CONTACT : </h3>
+        <div>
+            <img src="" alt="">
+            <div>
+                <H5>card title </H5>
+                <p>contenu de la carte</p>
+                <a href="#">lien vers un views</a>
+            </div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <span>Nom :</span><span>{{contact.name}}</span>
+                </li>
+                <li>
+                    <span>Prenom :</span><span>{{contact.lastname}}</span>    
+                </li>
+                <li>
+                    <span>Téléphone :</span><span>{{contact.phone}}</span>   
+                </li>
+                <li>
+                    <span>e-mail :</span><span>{{contact.email}}</span>    
+                </li>
+                <li>
+                    <span>Addresse :</span><span>{{contact.address}}</span>    
+                </li>
+
+            </ul>
+        </div>
+
+    {% else %}
+        Aucun contact à affichier pour l'instant
+    {% endif %}
+{% endblock %}

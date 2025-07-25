@@ -7,6 +7,9 @@
         {% for contact in contact_list%}
             <li>
                 <a href="{% url 'book:details' contact.id %}">D</a>{{contact.name}} {{ contact.lastname}}
+                <a href="{% url 'book:update' contact.id %}">Modifier</a>
+                <a href="{% url 'book:process_delete' contact.id %}">Supprimer</a>
+                <p>{{ contact.phone }}</p>
             </li>
         {% endfor %}
     </ul>

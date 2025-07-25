@@ -1,0 +1,17 @@
+{% extends 'book/base.html' %}
+{% load static %}
+{%block content%}
+<h3>LISTE DES CONTACTES</h3>
+{% if contact_list %}
+    <ul>
+        {% for contact in contact_list%}
+            <li>
+                <a href="{% url 'book:details' contact.id %}">D</a>{{contact.name}} {{ contact.lastname}}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun contact pour l'instant</p>
+{% endif %}
+
+{% endblock %}

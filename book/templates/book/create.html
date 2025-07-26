@@ -1,36 +1,13 @@
 {% extends "book/base.html" %}
-{% load static %}
 
 {% block content %}
     <h3>CREATION D'UN CONTACT</h3>
     <div>
-        <form action="{% url 'book:process_add' %}" name="action" method="post">
+        <form action="{% url 'book:general_process' %}" method="post" encrypt="multipart/form-data">
             {% csrf_token %}
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div>
-                <label for="lastname">Last name</label>
-                <input type="text" name="lastname" id="lastname">
-            </div>
-            <div>
-                <label for="phone">Phone</label>
-                <input type="text" name="phone" id="phone">
-            </div>
-            <div>
-                <label for="email">e-mail</label>
-                <input type="text" name="email" id="email">
-            </div>
-            <div>
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address">
-            </div>
-            <div>
-                <input type="file" name="photo" id="photo">
-            </div>
+            {% include "book/_form.html" %}
+            <button type="submit" name="action" value="add">Submit</button>
+            <button type="reset" name="action" value="reset">Reset</button>
         </form>
-        <button type="submit" name="action" value="add">Submit</button>
-        <button type="reset" name="action" value="reset">Reset</button>
     </div>
-{% endblock%}
+{% endblock %}

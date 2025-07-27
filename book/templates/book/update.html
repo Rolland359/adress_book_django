@@ -1,0 +1,25 @@
+{% extends "book/base.html"%}
+{% load static %}
+
+{% block content %}
+    {% if not contact %}
+        <p>Aucun contact séléctionnée pour une mis à jour ou suppression éventuelle </p>
+    {% endif%}
+    <!--###### ETO ilay tena corps du message ########-->
+    {% if message %}
+        {# ETO IZANY IZY RAHA OHATRA KA MAMAFA CONTACT #}
+        {{ message }}
+    {% else %}
+        {# eto izy raha manao update #}
+            <h3>MIS A JOUR DU CONTACT</h3>
+            <div>
+                <form action="{% url 'book:general_process' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include "book/_form.html" with entete='Mis à jour du Contact' name=contact.name lastname=contact.lastname phone=contact.phone email=contact.email adress=contact.address photo=contact.photo%}
+                    <button type="submit" name="action" value="update">Submit</button>
+                    <button type="reset" name="action" value="reset">Reset</button>
+                </form>
+            </div>
+
+    {% endif %}
+{% endblock %}

@@ -3,34 +3,45 @@
 
 {% block content %}
     {% if contact %}
-    <h3>PLUS DE DETAILS SUR UN(E) CONTACT : </h3>
-        <div>
-            <img src="" alt="">
-            <div>
-                <H5>card title </H5>
-                <p>contenu de la carte</p>
-                <a href="#">lien vers un views</a>
+    <h3 class="text-center mt-3 mb-3">PLUS DE DETAILS SUR UN(E) CONTACT : </h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-5 ">
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top" src="Sans_titre.png" alt="">
+                        <div class="card-body">
+                            <H5 class="card-title">card title </H5>
+                            <p class="card-text">contenu de la carte</p>
+                            <a class="btn btn-primary" href="{% url 'book:update' contact.id %}">Modifier</a>
+                            <a class="btn btn-danger" href="{% url 'book:process_delete' contact.id %}">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col shadow mb-5" style="height:80vh;">
+                    <table class="table mt-2">
+                        <tr>
+                            <th scope="row">Nom :</th>
+                            <td>{{contact.name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prenom :</th>
+                            <td>{{contact.lastname}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Téléphone :</th>
+                            <td>{{contact.phone}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">e-mail :</th>
+                            <td>{{contact.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Addresse :</th>
+                            <td>{{contact.address}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div>
-            <ul>
-                <li>
-                    <span>Nom :</span><span>{{contact.name}}</span>
-                </li>
-                <li>
-                    <span>Prenom :</span><span>{{contact.lastname}}</span>    
-                </li>
-                <li>
-                    <span>Téléphone :</span><span>{{contact.phone}}</span>   
-                </li>
-                <li>
-                    <span>e-mail :</span><span>{{contact.email}}</span>    
-                </li>
-                <li>
-                    <span>Addresse :</span><span>{{contact.address}}</span>    
-                </li>
-
-            </ul>
         </div>
 
     {% else %}

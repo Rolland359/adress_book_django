@@ -8,7 +8,7 @@
             <li>
                 <a href="{% url 'book:details' contact.id %}">D</a>{{contact.name}} {{ contact.lastname}}
                 <a href="{% url 'book:update' contact.id %}">Modifier</a>
-                <a href="{% url 'book:process_delete' contact.id %}">Supprimer</a>
+                <a href="{% url 'book:process_delete' contact.id %} " class="delete-link">Supprimer</a>
                 <p>{{ contact.phone }}</p>
             </li>
         {% endfor %}
@@ -16,5 +16,21 @@
 {% else %}
     <p>Aucun contact pour l'instant</p>
 {% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteLinks = document.querySelectorAll('.delete-link');
+
+        deleteLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce contact ? Cette action est irréversible.');
+
+                if (!confirmation) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

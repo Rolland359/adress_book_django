@@ -22,7 +22,7 @@ def update(request, contact_id):
     context = {"contact":contact}
     return render(request, "book/update.html", context)
 
-def general_process(request):
+def process_create(request):
     type_daction = request.POST.get("action")
     if type_daction == "add":
 
@@ -39,10 +39,22 @@ def general_process(request):
 
         return HttpResponseRedirect(reverse("book:index", args=()))
     
-    elif type_daction == "update":
+
+def process_update(request, contact_id):
+
+        contact = get_object_or_404(Contact, pk=contact_id)
+        contact.name = request.POST.get("name")
+        contact.lastname = request.POST.get("lastname")
+        contact.phone = request.POST.get("phone")
+        contact.email = request.POST.get("email")
+        contact.address = request.POST.get("address")
+        contact.photo = request.FILES.get("photo", contact.photo)
+        contact.save()
         return HttpResponseRedirect(reverse("book:index", args=()))
 
+
 def process_delete(request, contact_id):
-    contact = get_object_or_404(Contact, pk=contact_id)
-    context = {"contact":contact, "message":"delete"}
-    return render(request, "book/update.html", context)
+        contact = get_object_or_404(Contact, pk=contact_id)
+        contact.delete()
+        return HttpResponseRedirect(reverse("book:index", args=()))
+    

@@ -3,23 +3,23 @@
 
 {% block content %}
     {% if not contact %}
-        <p>Aucun contact séléctionnée pour une mis à jour ou suppression éventuelle </p>
-    {% endif%}
-    <!--###### ETO ilay tena corps du message ########-->
-    {% if message %}
-        {# ETO IZANY IZY RAHA OHATRA KA MAMAFA CONTACT #}
-        {{ message }}
+        <div class="container">
+            <p>Aucun contact séléctionnée pour une mis à jour ou suppression éventuelle </p>
+        </div>
     {% else %}
         {# eto izy raha manao update #}
-            <h3>MIS A JOUR DU CONTACT</h3>
-            <div>
-                <form action="{% url 'book:general_process' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% include "book/_form.html" with entete='Mis à jour du Contact' name=contact.name lastname=contact.lastname phone=contact.phone email=contact.email adress=contact.address photo=contact.photo%}
-                    <button type="submit" name="action" value="update">Submit</button>
-                    <button type="reset" name="action" value="reset">Reset</button>
-                </form>
+        <div class="container mt-3 ">
+            <h3 class="text-center ">MIS A JOUR DU CONTACT</h3>
+            <div class="row justify-content-center">
+                <div class="box-center col-md-4 col-sm-6 my-3 shadow">
+                    <form action="{% url 'book:process_update' contact.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include "book/_form.html" with entete='Mis à jour du Contact' name=contact.name lastname=contact.lastname phone=contact.phone email=contact.email adress=contact.address photo=contact.photo%}
+                        <button class="btn btn-secondary mb-2 " type="submit" name="action" value="update">Submit</button>
+                        <button class="btn btn-warning mb-2 " type="reset" name="action" value="reset">Reset</button>
+                    </form>
+                </div>
             </div>
-
+        </div>
     {% endif %}
 {% endblock %}

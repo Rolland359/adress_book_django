@@ -3,17 +3,17 @@
 
 {% block content %}
     {% if contact %}
-    <h3 class="text-center mt-3 mb-3">PLUS DE DETAILS SUR UN(E) CONTACT : </h3>
+    <h3 class="text-center mt-3 mb-3" >PLUS DE DETAILS SUR UN(E) CONTACT : </h3>
         <div class="container">
             <div class="row">
                 <div class="col-md-3 mb-5 ">
                     <div class="card " style="width: 18rem;">
-                        <img class="card-img-top" src="Sans_titre.png" alt="">
+                        <img class="card-img-top" src="" alt="">
                         <div class="card-body">
                             <H5 class="card-title">card title </H5>
                             <p class="card-text">contenu de la carte</p>
                             <a class="btn btn-primary" href="{% url 'book:update' contact.id %}">Modifier</a>
-                            <a class="btn btn-danger" href="{% url 'book:process_delete' contact.id %}">Supprimer</a>
+                            <a class="btn btn-danger delete-link" href="{% url 'book:process_delete' contact.id %}">Supprimer</a>
                         </div>
                     </div>
                 </div>

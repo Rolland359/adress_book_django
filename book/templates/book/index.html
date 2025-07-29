@@ -1,36 +1,36 @@
 {% extends 'book/base.html' %}
 {% load static %}
 {%block content%}
-<h3>LISTE DES CONTACTES</h3>
-{% if contact_list %}
-    <ul>
-        {% for contact in contact_list%}
-            <li>
-                <a href="{% url 'book:details' contact.id %}">D</a>{{contact.name}} {{ contact.lastname}}
-                <a href="{% url 'book:update' contact.id %}">Modifier</a>
-                <a href="{% url 'book:process_delete' contact.id %} " class="delete-link">Supprimer</a>
-                <p>{{ contact.phone }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucun contact pour l'instant</p>
-{% endif %}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const deleteLinks = document.querySelectorAll('.delete-link');
-
-        deleteLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce contact ? Cette action est irréversible.');
-
-                if (!confirmation) {
-                    event.preventDefault();
-                }
-            });
-        });
-    });
-</script>
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-6 border rounded shadow bg-secondary text-dark bg-gradient bg-opacity-10">
+        <h3 class="text-center mt-3 " style="text-shadow: 2px 2px 3px blueviolet;">LISTE DES CONTACTES</h3>
+        <hr>
+        {% if contact_list %}
+            <ul>
+                {% for contact in contact_list%}
+                    <li class="card mb-2">
+                        <div class="row g-0">
+                            <div class="col-md-2">
+                                <img src="" class="img-fluid rounded-start" alt="pdp">
+                            </div>
+                            <div class="col-md-8" style="width:68%;">
+                                <div class="card-body ">
+                                    <a class ="card-title " href="{% url 'book:details' contact.id %}" >{{contact.name}} {{ contact.lastname}}</a>
+                                    <p>{{ contact.phone }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-8 mt-3" style=" width:fit-content; height:fit-content;">                                
+                                <a class="btn btn-secondary"href="{% url 'book:update' contact.id %}"> <i class="fa-solid fa-pen-to-square"></i></a><!-- Modifier -->
+                                <a class="btn btn-danger delete-link"href="{% url 'book:process_delete' contact.id %} "><i class="fa-solid fa-trash"></i></a><!-- Supprimer -->
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun contact pour l'instant</p>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock %}
